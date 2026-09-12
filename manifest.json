@@ -1,0 +1,12 @@
+{
+    "name": "Torch Prank",
+    "short_name": "Torch",
+    "description": "A flashlight prank application.",
+    "start_url": "/torch/",
+    "scope": "/torch/",
+    "display": "standalone",
+    "background_color": "#080b13",
+    "theme_color": "#080b13",
+    "orientation": "portrait",
+    "icons": []
+}
