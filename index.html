@@ -13,6 +13,22 @@
     <title>Torch</title>
 
 
+    <!-- =====================================
+         PWA
+    ====================================== -->
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+
+    <meta
+        name="theme-color"
+        content="#080b13"
+    >
+
+
     <!-- FONT AWESOME -->
 
     <link
@@ -99,7 +115,7 @@
 
         <div id="status">
 
-            TAP TO TURN ON TORCH and LET YOUR BLINDNESS FADE AWAY 🤣
+            TAP TO IGNITE
 
         </div>
 
@@ -407,6 +423,34 @@
     <!-- YOUR JAVASCRIPT -->
 
     <script src="script.js"></script>
+
+
+
+    <!-- =====================================
+         SERVICE WORKER
+    ====================================== -->
+
+    <script>
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener(
+
+                "load",
+
+                function () {
+
+                    navigator.serviceWorker.register(
+                        "sw.js"
+                    );
+
+                }
+
+            );
+
+        }
+
+    </script>
 
 
 </body>
