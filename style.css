@@ -1,0 +1,1455 @@
+/* =====================================
+   RESET
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #080b13;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =====================================
+   MAIN APP
+===================================== */
+
+#app {
+
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #080b13;
+
+    transition:
+        background 0.35s ease;
+
+}
+
+
+/* =====================================
+   FULL SCREEN WHITE FLASHLIGHT
+===================================== */
+
+#app.on {
+
+    background: #ffffff;
+
+}
+
+
+/* =====================================
+   BACKGROUND LIGHT
+===================================== */
+
+#glow {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background: #ffffff;
+
+    opacity: 0;
+
+}
+
+
+#app.on #glow {
+
+    animation:
+        lightFlash 0.45s ease-out forwards;
+
+}
+
+
+@keyframes lightFlash {
+
+    0% {
+
+        opacity: 0;
+
+    }
+
+    35% {
+
+        opacity: 0.65;
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================
+   FLASHLIGHT
+===================================== */
+
+#flashlight {
+
+    width: 170px;
+    height: 295px;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    z-index: 5;
+
+    filter:
+
+        drop-shadow(
+            0 20px 25px
+            rgba(0, 0, 0, 0.65)
+        );
+
+    animation:
+        torchFloat 3s ease-in-out infinite;
+
+}
+
+
+/* =====================================
+   FLOATING ANIMATION
+===================================== */
+
+@keyframes torchFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+
+}
+
+
+/* Stop floating when torch is ON */
+
+#app.on #flashlight {
+
+    animation: none;
+
+}
+
+
+/* =====================================
+   FLASHLIGHT HEAD
+===================================== */
+
+#head {
+
+    width: 150px;
+    height: 55px;
+
+    position: relative;
+
+    border-radius:
+
+        50% 50%
+        12px 12px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #15161e 0%,
+
+            #2a2b36 20%,
+
+            #464755 50%,
+
+            #292a35 80%,
+
+            #14151d 100%
+
+        );
+
+    box-shadow:
+
+        inset
+        0 -8px 10px
+        rgba(0, 0, 0, 0.45),
+
+        inset
+        0 2px 3px
+        rgba(255, 255, 255, 0.05);
+
+}
+
+
+/* =====================================
+   FLASHLIGHT LIGHT
+===================================== */
+
+#beam {
+
+    position: absolute;
+
+    width: 138px;
+    height: 26px;
+
+    top: 5px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+
+            ellipse,
+
+            #ffffff 0%,
+
+            #fff8dc 30%,
+
+            #ffe8a0 60%,
+
+            #ffd15b 100%
+
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+
+/* =====================================
+   LIGHT ON
+===================================== */
+
+#app.on #beam {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    animation:
+
+        beamTurnOn 0.4s ease-out forwards,
+
+        beamPulse 2s ease-in-out 0.4s infinite;
+
+}
+
+
+@keyframes beamTurnOn {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            scale(0.5);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes beamPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+
+            0 0 15px
+            rgba(255, 255, 255, 1),
+
+            0 0 40px
+            rgba(255, 230, 150, 0.8);
+
+    }
+
+    50% {
+
+        box-shadow:
+
+            0 0 25px
+            rgba(255, 255, 255, 1),
+
+            0 0 65px
+            rgba(255, 230, 150, 1);
+
+    }
+
+}
+
+
+/* =====================================
+   METAL RING
+===================================== */
+
+#ring {
+
+    width: 120px;
+    height: 15px;
+
+    margin-top: -1px;
+
+    background:
+
+        linear-gradient(
+
+            to bottom,
+
+            #15161e,
+
+            #343541,
+
+            #171821
+
+        );
+
+}
+
+
+/* =====================================
+   TORCH BODY
+===================================== */
+
+#torchBody {
+
+    width: 130px;
+    height: 175px;
+
+    position: relative;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #12131b 0%,
+
+            #242532 18%,
+
+            #383946 50%,
+
+            #242532 78%,
+
+            #101119 100%
+
+        );
+
+    border-radius:
+
+        4px
+        4px
+        12px
+        12px;
+
+}
+
+
+/* =====================================
+   BODY TOP LINES
+===================================== */
+
+#torchBody::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 52px;
+
+    background:
+
+        repeating-linear-gradient(
+
+            to bottom,
+
+            transparent 0px,
+
+            transparent 4px,
+
+            rgba(0, 0, 0, 0.7) 5px,
+
+            rgba(110, 110, 130, 0.25) 6px
+
+        );
+
+}
+
+
+/* =====================================
+   BODY BOTTOM LINES
+===================================== */
+
+#torchBody::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 18px;
+    left: 0;
+
+    width: 100%;
+    height: 32px;
+
+    background:
+
+        repeating-linear-gradient(
+
+            to bottom,
+
+            transparent 0px,
+
+            transparent 4px,
+
+            rgba(0, 0, 0, 0.7) 5px,
+
+            rgba(110, 110, 130, 0.25) 6px
+
+        );
+
+}
+
+
+/* =====================================
+   FLASHLIGHT BOTTOM
+===================================== */
+
+#bottom {
+
+    width: 120px;
+    height: 28px;
+
+    margin-top: -1px;
+
+    border-radius:
+
+        0
+        0
+        7px
+        7px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #101119,
+
+            #292a35,
+
+            #484957,
+
+            #292a35,
+
+            #101119
+
+        );
+
+}
+
+
+/* =====================================
+   POWER BUTTON
+===================================== */
+
+#powerBtn {
+
+    position: absolute;
+
+    width: 78px;
+    height: 78px;
+
+    top: 63px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+
+            circle at 35% 30%,
+
+            #343541,
+
+            #181923,
+
+            #0c0d13
+
+        );
+
+    border:
+
+        2px solid
+        #383946;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    color: #eeb942;
+
+    font-size: 28px;
+
+    box-shadow:
+
+        inset
+        0 2px 4px
+        rgba(255, 255, 255, 0.08),
+
+        inset
+        0 -4px 8px
+        rgba(0, 0, 0, 0.8),
+
+        0 5px 12px
+        rgba(0, 0, 0, 0.65);
+
+    transition:
+
+        transform 0.15s ease,
+
+        box-shadow 0.3s ease,
+
+        color 0.3s ease;
+
+}
+
+
+/* =====================================
+   BUTTON HOVER
+===================================== */
+
+#powerBtn:hover {
+
+    box-shadow:
+
+        inset
+        0 2px 4px
+        rgba(255, 255, 255, 0.08),
+
+        inset
+        0 -4px 8px
+        rgba(0, 0, 0, 0.8),
+
+        0 0 18px
+        rgba(238, 185, 66, 0.18),
+
+        0 5px 12px
+        rgba(0, 0, 0, 0.65);
+
+}
+
+
+/* =====================================
+   BUTTON PRESS
+===================================== */
+
+#powerBtn:active {
+
+    transform:
+
+        translateX(-50%)
+        scale(0.88);
+
+}
+
+
+/* =====================================
+   POWER BUTTON ON
+===================================== */
+
+#app.on #powerBtn {
+
+    color: #ffd15b;
+
+    animation:
+        powerPulse 2s ease-in-out infinite;
+
+}
+
+
+@keyframes powerPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+
+            inset
+            0 2px 4px
+            rgba(255, 255, 255, 0.08),
+
+            inset
+            0 -4px 8px
+            rgba(0, 0, 0, 0.8),
+
+            0 0 10px
+            rgba(255, 190, 60, 0.3);
+
+    }
+
+    50% {
+
+        box-shadow:
+
+            inset
+            0 2px 4px
+            rgba(255, 255, 255, 0.08),
+
+            inset
+            0 -4px 8px
+            rgba(0, 0, 0, 0.8),
+
+            0 0 28px
+            rgba(255, 190, 60, 0.65);
+
+    }
+
+}
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+#status {
+
+    position: absolute;
+
+    bottom: 42px;
+
+    z-index: 10;
+
+    color: #9a9dab;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    letter-spacing: 5px;
+
+    text-align: center;
+
+    transition:
+
+        color 0.3s ease,
+
+        opacity 0.3s ease;
+
+}
+
+
+#app.on #status {
+
+    color: #222222;
+
+    animation:
+        statusFade 0.5s ease;
+
+}
+
+
+@keyframes statusFade {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================
+   OVERLAY
+===================================== */
+
+#overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.72);
+
+    backdrop-filter:
+        blur(6px);
+
+    z-index: 100;
+
+}
+
+
+#overlay.show {
+
+    display: flex;
+
+    animation:
+        overlayFade 0.25s ease;
+
+}
+
+
+@keyframes overlayFade {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================
+   POPUP
+===================================== */
+
+#popup {
+
+    width: 100%;
+
+    max-width: 360px;
+
+    background: #151720;
+
+    border:
+
+        1px solid
+        #2b2e3a;
+
+    border-radius: 18px;
+
+    padding: 24px 20px;
+
+    box-shadow:
+
+        0 25px 80px
+        rgba(0, 0, 0, 0.7);
+
+}
+
+
+#overlay.show #popup {
+
+    animation:
+        popupEnter 0.35s cubic-bezier(
+            0.175,
+            0.885,
+            0.32,
+            1.275
+        );
+
+}
+
+
+@keyframes popupEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+
+            scale(0.85)
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================
+   POPUP ICON
+===================================== */
+
+.popup-icon {
+
+    width: 52px;
+    height: 52px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+
+        rgba(255, 190, 60, 0.10);
+
+    color: #e0ad3d;
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================
+   POPUP TEXT
+===================================== */
+
+#popup h2 {
+
+    text-align: center;
+
+    color: #f4f4f6;
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.sub {
+
+    text-align: center;
+
+    color: #9a9dab;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* =====================================
+   PRICE
+===================================== */
+
+.price {
+
+    text-align: center;
+
+    color: #ffc94f;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    animation:
+        pricePulse 2s ease-in-out infinite;
+
+}
+
+
+@keyframes pricePulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.04);
+
+    }
+
+}
+
+
+/* =====================================
+   PAYMENT OPTIONS
+===================================== */
+
+.pay-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+}
+
+
+.pay-opt {
+
+    width: 100%;
+
+    border:
+
+        1px solid
+        #30333f;
+
+    background:
+        #1b1e28;
+
+    border-radius: 11px;
+
+    padding: 10px 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+
+        transform 0.2s ease,
+
+        border-color 0.2s ease,
+
+        background 0.2s ease;
+
+}
+
+
+.pay-opt:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.pay-opt:active {
+
+    transform:
+        scale(0.98);
+
+}
+
+
+.pay-opt.selected {
+
+    border-color:
+        #d9a73b;
+
+    background:
+
+        rgba(255, 190, 60, 0.08);
+
+}
+
+
+/* =====================================
+   LOGO BOX
+===================================== */
+
+.logo-box {
+
+    width: 68px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+}
+
+
+.logo-box img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+
+
+/* =====================================
+   CARD ICON
+===================================== */
+
+.card-icon {
+
+    width: 68px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #c8cbd4;
+
+    font-size: 24px;
+
+}
+
+
+/* =====================================
+   PAYMENT NAME
+===================================== */
+
+.pay-name {
+
+    flex: 1;
+
+    color: #f0f0f2;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}
+
+
+/* =====================================
+   CHECK CIRCLE
+===================================== */
+
+.chk {
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    border:
+
+        1px solid
+        #666a77;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: transparent;
+
+    font-size: 10px;
+
+    flex-shrink: 0;
+
+    transition:
+
+        transform 0.25s ease,
+
+        background 0.25s ease;
+
+}
+
+
+.pay-opt.selected .chk {
+
+    background: #e0ad3d;
+
+    border-color: #e0ad3d;
+
+    color: #17130a;
+
+    animation:
+        checkPop 0.3s ease;
+
+}
+
+
+@keyframes checkPop {
+
+    0% {
+
+        transform:
+            scale(0);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================
+   PAY BUTTON
+===================================== */
+
+#payBtn {
+
+    width: 100%;
+
+    margin-top: 17px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #e0ad3d;
+
+    color: #17130a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+
+        transform 0.2s ease,
+
+        box-shadow 0.2s ease;
+
+}
+
+
+#payBtn:hover {
+
+    box-shadow:
+
+        0 8px 22px
+        rgba(224, 173, 61, 0.25);
+
+}
+
+
+#payBtn:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+#payBtn i {
+
+    margin-right: 7px;
+
+}
+
+
+/* =====================================
+   CANCEL BUTTON
+===================================== */
+
+#cancelBtn {
+
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #9a9dab;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+
+        color 0.2s ease;
+
+}
+
+
+#cancelBtn:hover {
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================
+   PROCESSING SCREEN
+===================================== */
+
+#paying {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 35px 0;
+
+}
+
+
+.processing-icon {
+
+    font-size: 34px;
+
+    color: #e0ad3d;
+
+    margin-bottom: 17px;
+
+}
+
+
+.processing-icon i {
+
+    animation:
+        spin 0.8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+#paying p {
+
+    color: #9a9dab;
+
+    font-size: 14px;
+
+    margin-top: 8px;
+
+}
+
+
+/* =====================================
+   PRANK REVEAL
+===================================== */
+
+#reveal {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 35px 0;
+
+}
+
+
+#reveal h2 {
+
+    color: #f4f4f6;
+
+    font-size: 25px;
+
+    animation:
+        prankPop 0.5s cubic-bezier(
+            0.175,
+            0.885,
+            0.32,
+            1.275
+        );
+
+}
+
+
+@keyframes prankPop {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.3)
+            rotate(-10deg);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.15)
+            rotate(3deg);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE HEIGHT
+===================================== */
+
+@media (max-height: 650px) {
+
+    #flashlight {
+
+        transform:
+            scale(0.85);
+
+    }
+
+
+    #status {
+
+        bottom: 25px;
+
+    }
+
+}

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Torch</title>
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- YOUR CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- MAIN APP -->
+
+    <div id="app">
+
+
+        <!-- BACKGROUND LIGHT GLOW -->
+
+        <div id="glow"></div>
+
+
+        <!-- FLASHLIGHT -->
+
+        <div id="flashlight">
+
+
+            <!-- FLASHLIGHT HEAD -->
+
+            <div id="head">
+
+
+                <!-- LIGHT LENS -->
+
+                <div id="beam"></div>
+
+
+            </div>
+
+
+            <!-- METAL RING -->
+
+            <div id="ring"></div>
+
+
+            <!-- FLASHLIGHT BODY -->
+
+            <div id="torchBody">
+
+
+                <!-- POWER BUTTON -->
+
+                <button
+                    id="powerBtn"
+                    aria-label="Turn flashlight on or off"
+                >
+
+                    <i class="fa-solid fa-power-off"></i>
+
+                </button>
+
+
+            </div>
+
+
+            <!-- FLASHLIGHT BOTTOM -->
+
+            <div id="bottom"></div>
+
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div id="status">
+
+            TAP TO IGNITE
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================
+         PAYMENT PRANK OVERLAY
+    ====================================== -->
+
+    <div id="overlay">
+
+
+        <div id="popup">
+
+
+            <!-- =====================================
+                 PAYMENT SCREEN
+            ====================================== -->
+
+            <div id="payScreen">
+
+
+                <!-- LOCK ICON -->
+
+                <div class="popup-icon">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                </div>
+
+
+                <h2>
+
+                    Flashlight Locked
+
+                </h2>
+
+
+                <p class="sub">
+
+                    To turn off the flashlight, an unlock fee is required.
+
+                </p>
+
+
+                <!-- PRICE -->
+
+                <div class="price">
+
+                    ₹1000
+
+                </div>
+
+
+
+                <!-- =====================================
+                     PAYMENT METHODS
+                ====================================== -->
+
+                <div class="pay-options">
+
+
+                    <!-- GOOGLE PAY -->
+
+                    <button
+                        class="pay-opt"
+                        type="button"
+                        data-payment="Google Pay"
+                    >
+
+
+                        <div class="logo-box">
+
+
+                            <img
+                                src="https://static.wikia.nocookie.net/logopedia/images/4/47/Google_Pay_2018_icon.svg"
+                                alt="Google Pay"
+                            >
+
+
+                        </div>
+
+
+                        <span class="pay-name">
+
+                            Google Pay
+
+                        </span>
+
+
+                        <span class="chk">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </span>
+
+
+                    </button>
+
+
+
+                    <!-- PAYTM -->
+
+                    <button
+                        class="pay-opt"
+                        type="button"
+                        data-payment="Paytm"
+                    >
+
+
+                        <div class="logo-box">
+
+
+                            <img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHDnrU9lAvYOABaKuRYUckIBlUFd0rh6tgR2DnEBDQag&s=10"
+                                alt="Paytm"
+                            >
+
+
+                        </div>
+
+
+                        <span class="pay-name">
+
+                            Paytm
+
+                        </span>
+
+
+                        <span class="chk">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </span>
+
+
+                    </button>
+
+
+
+                    <!-- PHONEPE -->
+
+                    <button
+                        class="pay-opt"
+                        type="button"
+                        data-payment="PhonePe"
+                    >
+
+
+                        <div class="logo-box">
+
+
+                            <img
+                                src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/phonepe-icon.png"
+                                alt="PhonePe"
+                            >
+
+
+                        </div>
+
+
+                        <span class="pay-name">
+
+                            PhonePe
+
+                        </span>
+
+
+                        <span class="chk">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </span>
+
+
+                    </button>
+
+
+
+                    <!-- CREDIT CARD -->
+
+                    <button
+                        class="pay-opt"
+                        type="button"
+                        data-payment="Card"
+                    >
+
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                        </div>
+
+
+                        <span class="pay-name">
+
+                            Credit / Debit Card
+
+                        </span>
+
+
+                        <span class="chk">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </span>
+
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- PAY BUTTON -->
+
+                <button
+                    id="payBtn"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    PAY ₹1000
+
+                </button>
+
+
+
+                <!-- CANCEL BUTTON -->
+
+                <button
+                    id="cancelBtn"
+                    type="button"
+                >
+
+                    CANCEL
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 PROCESSING SCREEN
+            ====================================== -->
+
+            <div id="paying">
+
+
+                <div class="processing-icon">
+
+                    <i class="fa-solid fa-circle-notch"></i>
+
+                </div>
+
+
+                <h2>
+
+                    Processing Payment
+
+                </h2>
+
+
+                <p>
+
+                    Please wait...
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 PRANK REVEAL
+            ====================================== -->
+
+            <div id="reveal">
+
+                <h2>
+
+                    Prank 😝😝😝😝😝
+
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- YOUR JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
